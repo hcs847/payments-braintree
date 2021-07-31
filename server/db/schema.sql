@@ -1,0 +1,2 @@
+DROP DATABASE IF EXISTS bpoc_db;
+CREATE DATABASE bpoc_db;
