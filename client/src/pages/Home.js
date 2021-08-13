@@ -1,38 +1,37 @@
 import React, { useEffect, useState } from 'react';
-import 'braintree-web';
-import axios from 'axios';
-import DropIn from 'braintree-web-drop-in-react';
+// import 'braintree-web';
+// import axios from 'axios';
+// import DropIn from 'braintree-web-drop-in-react';
 
 function Home() {
-    const [braintreeToken, setBraintreeToken] = useState('');
+    // const [braintreeToken, setBraintreeToken] = useState('');
 
-    useEffect(() => {
-        axios.get('http://localhost:3001/api/braintree/v1/getToken')
-            .then(response => {
-                setBraintreeToken(response.data.clientToken);
-            })
-            .catch(err => console.error(err))
-    }, []);
+    // useEffect(() => {
+    //     axios.get('/api/braintree/v1/getToken')
+    //         .then(response => {
+    //             setBraintreeToken(response.data.clientToken);
+    //         })
+    //         .catch(err => console.error(err))
+    // }, []);
 
-    let braintreeInstance;
-    const buy = async () => {
-        try {
-            const { nonce } = await braintreeInstance.requestPaymentMethod();
-            console.log("nonce==", nonce);
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
+    // let braintreeInstance;
+    // const buy = async () => {
+    //     try {
+    //         const { nonce } = await braintreeInstance.requestPaymentMethod();
+    //         console.log("nonce==", nonce);
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    // }
 
     return (
         <>
-            {!braintreeToken &&
-                <div>
-                    <h1>Loading...</h1>
-                </div>
+            {/* {!braintreeToken && */}
+            <div>
+                <h1>Loading...</h1>
+            </div>
 
-            }
+            {/* }
             <div className='flex flex-center'>
 
                 <div className='card'>
@@ -43,7 +42,7 @@ function Home() {
                     <button className='btn' onClick={buy}>Buy</button>
                 </div>
 
-            </div>
+            </div> */}
         </>
     )
 }
