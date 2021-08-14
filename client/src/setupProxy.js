@@ -8,7 +8,7 @@ module.exports = (app) => {
     )
     );
 
-    app.use(createProxyMiddleware('/api/*',
+    app.use(createProxyMiddleware('/api/**',
         {
             target: 'http://localhost:3001/'
         }

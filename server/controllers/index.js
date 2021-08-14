@@ -1,10 +1,10 @@
 const router = require("express").Router();
-// const apiRoutes = require("./api");
+const apiRoutes = require("./api");
 const landingRoutes = require("./braintree-routes");
 const auth = require("./google-auth");
 
 
-// router.use("/api", apiRoutes);
+router.use("/api", apiRoutes);
 
 // user-facing routes
 router.use("/", landingRoutes);
