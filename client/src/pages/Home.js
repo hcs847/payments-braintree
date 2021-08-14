@@ -7,12 +7,15 @@ function Home() {
     const [braintreeToken, setBraintreeToken] = useState('');
 
     useEffect(() => {
-        axios.get('http://localhost:3001/api/braintree/v1/getToken')
+        axios.get('/api/braintree/v1/getToken')
             .then(response => {
                 setBraintreeToken(response.data.clientToken);
+                console.log(typeof braintreeToken);
             })
             .catch(err => console.error(err))
     }, []);
+
+    console.log('state===', braintreeToken);
 
     let braintreeInstance;
     const buy = async () => {
@@ -24,26 +27,33 @@ function Home() {
         }
     }
 
-
     return (
         <>
-            {!braintreeToken &&
+            {!braintreeToken ? (
                 <div>
                     <h1>Loading...</h1>
                 </div>
+            ) : (
+
+                <div className='flex flex-center'>
+
+                    <div className='card'>
+                        <DropIn
+                            options={{
+                                authorization: braintreeToken
+                            }}
+                            onInstance={instance => {
+                                (braintreeInstance = instance);
+                                console.log("instance===", instance);
+                            }}
+                            onError={error => { console.log("error===", error) }} />
+                        <button className='btn' onClick={buy}>Buy</button>
+                    </div>
+
+                </div>
+            )
 
             }
-            <div className='flex flex-center'>
-
-                <div className='card'>
-                    <DropIn options={{
-                        authorization: braintreeToken
-                    }}
-                        onInstance={instance => (braintreeInstance = instance)} />
-                    <button className='btn' onClick={buy}>Buy</button>
-                </div>
-
-            </div>
         </>
     )
 }

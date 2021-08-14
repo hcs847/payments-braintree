@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const braintree = require('braintree');
+require('dotenv').config();
 
 let gateway = braintree.connect({
     environment: braintree.Environment.Sandbox,
