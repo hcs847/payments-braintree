@@ -1,2 +1,0 @@
-DROP DATABASE IF EXISTS btree_db;
-CREATE DATABASE btree_db;
