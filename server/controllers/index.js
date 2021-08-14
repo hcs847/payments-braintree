@@ -1,17 +1,13 @@
 const router = require("express").Router();
-const apiRoutes = require("./api");
 const landingRoutes = require("./braintree-routes");
 const auth = require("./google-auth");
+const userRoutes = require('./user-routes.js');
 
+router.use('/users', userRoutes);
 
-router.use("/api", apiRoutes);
-
-// user-facing routes
 router.use("/", landingRoutes);
 
-// google oath routes
 router.use("/auth", auth);
-
 
 router.use((req, res) => {
     res.status(404).end();

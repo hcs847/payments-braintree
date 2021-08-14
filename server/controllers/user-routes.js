@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { User } = require("../../models");
+const { User } = require("../models");
 
 // Create user
 router.post("/", (req, res) => {
@@ -57,7 +57,6 @@ router.get("/:id", (req, res) => {
             res.status(500).json(err);
         });
 });
-
 
 // Update user
 router.put("/:id", (req, res) => {

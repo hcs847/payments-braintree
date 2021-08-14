@@ -10,12 +10,9 @@ function Home() {
         axios.get('/api/braintree/v1/getToken')
             .then(response => {
                 setBraintreeToken(response.data.clientToken);
-                console.log(typeof braintreeToken);
             })
             .catch(err => console.error(err))
     }, []);
-
-    console.log('state===', braintreeToken);
 
     let braintreeInstance;
     const buy = async () => {
@@ -44,15 +41,12 @@ function Home() {
                             }}
                             onInstance={instance => {
                                 (braintreeInstance = instance);
-                                console.log("instance===", instance);
                             }}
                             onError={error => { console.log("error===", error) }} />
                         <button className='btn' onClick={buy}>Buy</button>
                     </div>
-
                 </div>
             )
-
             }
         </>
     )

@@ -1,7 +1,5 @@
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 require("dotenv").config();
-// const Sequelize = require('sequelize');
-const mongoose = require('mongoose');
 const User = require('../models/User');
 
 
@@ -15,12 +13,7 @@ module.exports = function (passport) {
                 callbackURL: '/auth/google/callback',
                 passReqToCallback: true
             },
-            // function (accessToken, refreshToken, profile, done) {
-            //     console.log("===============================================")
-            //     console.log('profile', JSON.stringify(profile));
-            //     User = { ...profile };
-            //     return done(null, profile);
-            // }
+
             async (request, accessToken, refreshToken, profile, done) => {
                 const newUser = {
                     googleId: profile.id,
@@ -52,10 +45,6 @@ module.exports = function (passport) {
 
     passport.deserializeUser((id, done) => {
         User.findById(id, (err, user) => done(err, user))
-        // const user = await User.findOne({ where: { id } }).catch((err) => {
-        //     console.log("Error deserializing", err);
-        //     done(err, user);
-        // });
     })
 
 }
