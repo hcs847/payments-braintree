@@ -17,6 +17,7 @@
   "homepage": "",
   "dependencies": {
     "apollo-server-express": "^2.22.2",
+    "aws-sdk": "^2.971.0",
     "bcrypt": "^5.0.1",
     "braintree": "^2.12.0",
     "connect-flash": "^0.1.1",
@@ -30,7 +31,8 @@
     "morgan": "^1.10.0",
     "passport": "^0.4.1",
     "passport-google-oauth20": "^2.0.0",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.7"
