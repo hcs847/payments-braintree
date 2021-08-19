@@ -9,9 +9,9 @@ let gateway = braintree.connect({
     privateKey: process.env.BRAINTREE_PRIVATE_KEY
 })
 
-router.get('/braintree', (req, res) => res.send('Braintree route is working'));
+router.get('/', (req, res) => res.send('Braintree route is working'));
 
-router.get('/api/braintree/v1/getToken', async function (req, res) {
+router.get('/v1/getToken', async function (req, res) {
     try {
         gateway
             .clientToken

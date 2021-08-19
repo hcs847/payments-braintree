@@ -4,7 +4,7 @@ const Header = () => {
 
     return (
         <div className="header dark">
-            <h1 style={{ color: 'white', padding: '0.5rem' }}>Bank POC</h1>
+            <h1 style={{ color: 'white', padding: '0.5rem' }}>Braintree payments</h1>
         </div>
     )
 }
