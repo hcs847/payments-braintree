@@ -1,17 +1,17 @@
 const router = require("express").Router();
-const { User } = require("../models");
+const User = require("../models");
 
 // Create user
-router.post("/", (req, res) => {
-    if (req.body.profile_img === "") {
-        req.body.profile_img = "https://images-na.ssl-images-amazon.com/images/I/31L9QulMWnL.jpg";
+router.post("/create", (req, res) => {
+    if (req.body.profileImg === "") {
+        req.body.profileImg = "https://images-na.ssl-images-amazon.com/images/I/31L9QulMWnL.jpg";
     };
     User.create({
-        first_name: req.body.first_name,
-        last_name: req.body.last_name,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
         email: req.body.email,
         password: req.body.password,
-        profile_img: req.body.profile_img
+        profileImg: req.body.profileImg
     })
         .then((dbUserData) => {
             req.session.save(() => {
@@ -28,7 +28,7 @@ router.post("/", (req, res) => {
 });
 
 // Get all users
-router.get("/", (req, res) => {
+router.get("/get", (req, res) => {
     User.findAll({
         attributes: { exclude: ['password'] },
     })
@@ -59,7 +59,7 @@ router.get("/:id", (req, res) => {
 });
 
 // Update user
-router.put("/:id", (req, res) => {
+router.put("/edit/:id", (req, res) => {
     User.update(req.body, {
         individualHooks: true,
         where: {
@@ -80,7 +80,7 @@ router.put("/:id", (req, res) => {
 });
 
 // Delete user
-router.delete("/:id", (req, res) => {
+router.delete("/delete/:id", (req, res) => {
     User.destroy({
         where: {
             id: req.params.id,
