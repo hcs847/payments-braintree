@@ -16,7 +16,8 @@ router.get('/', (req, res) => {
         Bucket: 'private-network-react',
         ContentType: 'jpeg',
         Key: key
-    }, (err, url) => res.send({ key, url }));
+    },
+        (err, url) => res.send({ key, url }));
 });
 
 module.exports = router;

@@ -4,7 +4,7 @@ const auth = require("./google-auth");
 const userRoutes = require('./user-routes.js');
 const fileUploadRoutes = require('./upload-file-routes');
 
-router.use('/users', userRoutes);
+router.use('/api/users', userRoutes);
 
 router.use("/api/braintree", landingRoutes);
 
