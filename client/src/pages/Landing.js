@@ -6,8 +6,10 @@ function Landing() {
         <div className='flex flex-center'>
 
             <div className="card">
-                <p style={{ margin: '1rem', fontWeight: '500' }}>Create an account or Login</p>
-                <button style={{ backgroundColor: 'red' }} className='btn'><a href='/auth/google'>Login with Google</a></button>
+                <div className="card-body">
+                    <p>Create an account or Login</p>
+                    <button className='btn red'><a href='/auth/google'>Login with Google</a></button>
+                </div>
             </div>
 
 
