@@ -3,8 +3,20 @@ import React from 'react';
 const Header = () => {
 
     return (
-        <div className="header dark">
-            <h1 style={{ color: 'white', padding: '0.7rem' }}>Braintree payments Demo</h1>
+        <div className='header dark'>
+
+            <h1 className='logo'>Braintree payments Demo</h1>
+
+
+            <nav className='nav flex flex-between'>
+                <ul className='nav-list flex'>
+                    <li className='nav-link'>Home</li>
+                    <li className='nav-link'>Me</li>
+                </ul>
+                <ul className='nav-list'>
+                    <li className='nav-link'><a href='/auth/logout'>Logout</a></li>
+                </ul>
+            </nav>
         </div>
     )
 }
