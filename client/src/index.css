@@ -203,7 +203,7 @@ gap:1rem !important;
 }
 
 .card {
-  box-shadow: 0 0.5em 1em rgb(44 71 65 / 15%);
+  box-shadow: 0 0.5em 1em rgb(7 8 8 / 50%);
   border-radius: 1rem;
   padding: 1em;
   margin-top:5rem;
@@ -275,6 +275,7 @@ gap:1rem !important;
   border-color: white;
   padding: 0 .625rem;
   margin-bottom: 0.5rem;
+  font-weight: 600;
 }
 
 .btn-no-styling {
