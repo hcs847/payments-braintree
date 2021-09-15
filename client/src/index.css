@@ -39,7 +39,7 @@
 }
 
 .red {
-  background-color: red !important;
+  background-color: rgb(237,59,53) !important;
 }
 
 code {
@@ -218,11 +218,13 @@ input,
   box-shadow: 0 0.5em 1em rgb(7 8 8 / 50%);
   border-radius: 1rem;
   padding: 1em;
-  margin-top:5rem;
   background-color: white;
   max-width: 50vw;
   overflow: hidden;
+}
 
+.m-top-12 {
+  margin-top: 12rem;
 }
 
 .card +.card {
@@ -292,7 +294,7 @@ input,
   background-color: var(--dark);
   border-color: white;
   padding: 0 .625rem;
-  margin-bottom: 0.5rem;
+  margin: 0.5rem auto;
   font-weight: 600;
 }
 
