@@ -34,7 +34,7 @@ function Home() {
 
                 <div className='flex flex-center'>
 
-                    <div className='card'>
+                    <div className='card m-top-12'>
                         <DropIn
                             options={{
                                 authorization: braintreeToken
