@@ -10,17 +10,16 @@ const Signup = () => {
         email: '',
         passeord: ''
     });
-    const handleChange = e => {
-        const { name, value } = e.target;
+    const handleChange = (event) => {
+        const { name, value } = event.target;
         setUserState({
             ...userState,
             [name]: value
         })
     }
 
-    const handleFormSubmit = async (e) => {
-        e.preventDefault();
-
+    const handleFormSubmit = async (event) => {
+        event.preventDefault();
         const res = await axios.post('http://localhost:3000/api/users/create', userState);
         console.log(await res.data);
     }
@@ -77,6 +76,9 @@ const Signup = () => {
                     <button className='btn' type='submit'>Submit</button>
                 </div>
             </form>
+            <div className="flex flex-center">
+                <p>Already have an account? <span className='link'><Link to='/login'>Login</Link></span></p>
+            </div>
         </div>
     )
 }
