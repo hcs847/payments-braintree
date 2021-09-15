@@ -29,7 +29,7 @@ router.post("/create", (req, res) => {
 
 // Get all users
 router.get("/get", (req, res) => {
-    User.findAll({
+    User.find({
         attributes: { exclude: ['password'] },
     })
         .then((dbUserData) => res.json(dbUserData))
