@@ -1,8 +1,6 @@
 const path = require('path');
 const express = require('express');
-
 const mongoose = require('mongoose');
-
 const app = express();
 const routes = require('./controllers');
 const cors = require('cors');
@@ -11,6 +9,7 @@ require("dotenv").config();
 const morgan = require('morgan');
 const passport = require('passport');
 require('./config/passport')(passport);
+require('./config/passport-sign-up')(passport);
 
 if (process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'))
