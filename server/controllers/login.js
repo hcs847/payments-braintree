@@ -1,8 +1,10 @@
+const passport = require('passport');
 const User = require('../models');
 const jwt = require('jsonwebtoken');
 const router = require('express').Router();
+require("dotenv").config();
 
-router.post('/login', async (req, res) => {
+router.post('/login', async (req, res, next) => {
     const { email, password } = req.body;
 
     const usersEmail = await User.findOne({ email }).catch(
@@ -11,7 +13,7 @@ router.post('/login', async (req, res) => {
         }
     );
 
-    console.log("req.body", req.body, email, password, await usersEmail);
+    // console.log("req.body", req.body, email, password, 'awat=', await usersEmail.email);
 
     if (!usersEmail) {
         return res.status(400)
@@ -27,10 +29,21 @@ router.post('/login', async (req, res) => {
             id: usersEmail.id,
             email: usersEmail.email
         },
-        processs.env.JWT_SECRET
+        process.env.JWT_SECRET
     );
 
-    res.json({ message: 'Welcome Back!', token: jwtToken })
+    res.json({ message: 'Welcome Back!', token: jwtToken });
+    // res.redirect('/home');
+    // return;
+    next();
+    // res.redirect('/home');
 });
+
+router.get('/home/redirect',
+    // passport.authenticate('jwt', { session: false }),
+    (req, res) => {
+        res.redirect('/home');
+    }
+);
 
 module.exports = router;
