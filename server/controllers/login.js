@@ -13,8 +13,6 @@ router.post('/login', async (req, res, next) => {
         }
     );
 
-    // console.log("req.body", req.body, email, password, 'awat=', await usersEmail.email);
-
     if (!usersEmail) {
         return res.status(400)
             .json({ message: "Email or password doesn't match" });
@@ -33,14 +31,10 @@ router.post('/login', async (req, res, next) => {
     );
 
     res.json({ message: 'Welcome Back!', token: jwtToken });
-    // res.redirect('/home');
-    // return;
     next();
-    // res.redirect('/home');
 });
 
 router.get('/home/redirect',
-    // passport.authenticate('jwt', { session: false }),
     (req, res) => {
         res.redirect('/home');
     }

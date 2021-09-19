@@ -8,7 +8,7 @@ const Signup = () => {
         firstName: '',
         lastName: '',
         email: '',
-        passeord: ''
+        password: ''
     });
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -20,7 +20,7 @@ const Signup = () => {
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-        const res = await axios.post('http://localhost:3000/api/users/create', userState);
+        const res = await axios.post('http://localhost:3000/api/users/signup', userState);
         console.log(await res.data);
     }
 
@@ -67,7 +67,7 @@ const Signup = () => {
                         value={userState.password}
                         placeholder='******'
                         name='password'
-                        type="password"
+                        type='password'
                         id='pwd'
                         onChange={handleChange}
                     />

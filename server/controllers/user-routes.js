@@ -20,19 +20,6 @@ router.post("/signup", (req, res) => {
                     password: req.body.password,
                     profileImg: req.body.profileImg
                 });
-                // .then((dbUserData) => {
-                //     req.session.save(() => {
-                //         req.session.user_id = dbUserData.id;
-                //         req.session.username = dbUserData.email;
-                //         req.session.loggedIn = true;
-                //     });
-                //     res.json(dbUserData);
-                // })
-                // .catch((err) => {
-                //     console.log(err);
-                //     res.status(500).json(err);
-                // })
-                ;
 
                 bcrypt.genSalt(10, (err, salt) => {
                     bcrypt.hash(newUser.password, salt, (err, hash) => {
@@ -41,7 +28,9 @@ router.post("/signup", (req, res) => {
                                 .send(err);
                         };
                         newUser.password = hash;
-                        newUser.save()
+                        // save user with hashed password
+                        newUser
+                            .save()
                             .then(user => res.json(user))
                             .catch(err => console.log(err));
                     })
