@@ -8,6 +8,8 @@ const cors = require('cors');
 require("dotenv").config();
 const morgan = require('morgan');
 const passport = require('passport');
+
+// passport config
 require('./config/passport')(passport);
 require('./config/passport-sign-up')(passport);
 

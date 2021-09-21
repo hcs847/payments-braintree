@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import setAuthToken from '../utils/setAuthToken';
+import jwt_decode from 'jwt-decode';
 
 
 const Signup = () => {
@@ -20,8 +22,16 @@ const Signup = () => {
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-        const res = await axios.post('http://localhost:3000/api/users/signup', userState);
-        console.log(await res.data);
+        const res = await axios.post('/api/users/signup', userState);
+        const { token } = res.data;
+        // set token to local storage
+        localStorage.setItem('jwtToken', token);
+
+        // set token to auth header
+        setAuthToken(token);
+
+        // decode token to get user data
+        const decoded = jwt_decode(token);
     }
 
     return (
