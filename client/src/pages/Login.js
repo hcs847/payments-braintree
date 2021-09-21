@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import setAuthToken from '../utils/setAuthToken';
 
 const Login = () => {
     const [formState, setFormState] = useState({ email: '', password: '' });
@@ -17,7 +18,13 @@ const Login = () => {
     const handleFormSubmit = async (event) => {
         event.preventDefault();
         const res = await axios.post('http://localhost:3000/api/login', formState);
-        console.log(await res.data);
+        const { token } = res.data;
+
+        // save token to local storage
+        localStorage.setItem('jwtToken', token);
+
+        // set token to auth header and redirect to homepage
+        setAuthToken(token);
     }
 
     return (

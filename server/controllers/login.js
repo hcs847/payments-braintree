@@ -1,43 +1,42 @@
-const passport = require('passport');
 const User = require('../models');
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
 const router = require('express').Router();
-require("dotenv").config();
+require('dotenv').config();
 
-router.post('/login', async (req, res, next) => {
+router.post('/login', async (req, res) => {
     const { email, password } = req.body;
 
-    const usersEmail = await User.findOne({ email }).catch(
-        (err) => {
-            console.log('Error: ', err);
-        }
-    );
+    const user = await User.findOne({ email })
+        .catch(
+            (err) => {
+                console.log('Error: ', err);
+            }
+        );
 
-    if (!usersEmail) {
-        return res.status(400)
-            .json({ message: "Email or password doesn't match" });
+    if (!user) {
+        return res.status(404)
+            .json({ message: "User not found" });
     }
 
-    if (usersEmail.password !== password) {
-        return res.status(400)
+    // compare passwords
+    if (!bcrypt.compare(password, user.password)) {
+        return res.status(404)
             .json({ message: 'Password is incorrect.' })
     }
+    const payload = {
+        id: user.id,
+        email: user.email,
+        name: `${user.firstName} ${user.lastName}`
+    };
     const jwtToken = jwt.sign(
-        {
-            id: usersEmail.id,
-            email: usersEmail.email
-        },
-        process.env.JWT_SECRET
+        payload,
+        process.env.JWT_SECRET,
+        { expiresIn: 3600 },
     );
 
-    res.json({ message: 'Welcome Back!', token: jwtToken });
-    next();
+    res.json({ message: 'Welcome Back!', token: jwtToken, user });
 });
 
-router.get('/home/redirect',
-    (req, res) => {
-        res.redirect('/home');
-    }
-);
 
 module.exports = router;
